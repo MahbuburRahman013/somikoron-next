@@ -3,6 +3,7 @@ import { signIn } from "next-auth/react";
 interface LoginFormData {
   email: string;
   password: string;
+  name?: string;
 }
 
 export async function doCredentialLogin(formData: LoginFormData) {
@@ -10,6 +11,7 @@ export async function doCredentialLogin(formData: LoginFormData) {
     const response = await signIn("credentials", {
       email: formData.email,
       password: formData.password,
+      userName: formData.name,
       redirect: false,
     });
     return response;

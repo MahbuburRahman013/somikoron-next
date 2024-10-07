@@ -49,17 +49,23 @@ function Footer() {
             </li>
             <li className="flex gap-2 items-center">
               <FaLocationDot size={20} />
-              <li className="py-[8px] xl:text-nowrap">
-                Times Square Office Building
-              </li>
+              <ul>
+                <li className="py-[8px] xl:text-nowrap">
+                  Times Square Office Building
+                </li>
+              </ul>
             </li>
             <li className="flex gap-2 items-center">
               <MdEmail size={20} />
-              <li className="py-[8px]">info@mona-ai.mn</li>
+              <ul>
+                <li className="py-[8px]">info@mona-ai.mn</li>
+              </ul>
             </li>
             <li className="flex gap-2 items-center">
               <FaPhoneAlt size={20} />
-              <li className="py-[8px]">+976</li>
+              <ul>
+                <li className="py-[8px]">+976</li>
+              </ul>
             </li>
           </ul>
         </div>

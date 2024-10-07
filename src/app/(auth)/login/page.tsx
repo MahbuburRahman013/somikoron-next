@@ -19,9 +19,9 @@ function LoginPage() {
       const fromData = { email, password };
       const token = await doCredentialLogin(fromData);
       if (token?.ok) {
-        router.push("/");
+        setLoading(false);
+        router.push("/user/dashboard");
       }
-      setLoading(false);
     } catch (error) {
       if (error) {
         alert("something is wrong!!");
@@ -37,7 +37,7 @@ function LoginPage() {
           Loading...
         </div>
       )}
-      <div className="flex w-[643px] flex-col gap-[32px] rounded-[20px] bg-[#101727] p-[32px]">
+      <div className="flex w-[643px] flex-col gap-[32px] rounded-[20px] sm:mx-10 mx-3 bg-[#101727] p-[32px]">
         <div className="flex flex-col gap-[16px]">
           <h1 className="font-lexend text-[32px] font-medium text-[#ffffff]">
             Welcome Back!
@@ -61,7 +61,6 @@ function LoginPage() {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
                     viewBox="0 0 24 24"
                     className="size-[24px] fill-[#ffffff]/30"
                     height="1em"
@@ -90,7 +89,6 @@ function LoginPage() {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
                     viewBox="0 0 512 512"
                     className="size-[24px] fill-[#ffffff]/30"
                     height="1em"
@@ -107,7 +105,6 @@ function LoginPage() {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
                     viewBox="0 0 24 24"
                     className="size-6"
                     height="1em"

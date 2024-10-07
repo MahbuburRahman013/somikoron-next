@@ -1,20 +1,25 @@
 "use server";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+// import axios from "axios";
+// import { jwtDecode } from "jwt-decode";
 
 const userLoginNext = async (formData: {
   email: string | undefined;
   password: string | undefined;
+  name?: string | undefined;
 }) => {
-  const { email, password } = formData;
-  const token = await axios.post("http://localhost:5000/api/v1/login", {
-    email,
-    password,
-  });
+  // const { email, password , name} = formData;
+  // const token = await axios.post(
+  //   "https://somikoron-backend.vercel.app/api/v1/login",
+  //   {
+  //     email,
+  //     password,
+  //   }
+  // );
 
-  if (token) {
-    const decodedToken = jwtDecode(token.data.accessToken);
-    return decodedToken;
+  if (formData.email) {
+    // const decodedToken = jwtDecode(token.data.accessToken);
+    // return decodedToken;
+    return formData;
   } else {
     throw new Error("user is not exist");
   }

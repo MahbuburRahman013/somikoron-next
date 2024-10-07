@@ -5,6 +5,7 @@ import userLoginNext from "@/utils/userLoginNext";
 type FormDataType = {
   email: string | undefined;
   password: string | undefined;
+  name?: string | undefined;
 };
 
 export const authOptions: NextAuthOptions = {
@@ -17,11 +18,13 @@ export const authOptions: NextAuthOptions = {
         if (credentials === null) {
           return null;
         }
+        // console.log(credentials, "from credintio");
 
         try {
           const formData: FormDataType = {
             email: credentials?.email,
             password: credentials?.password,
+            name: credentials?.userName,
           };
           const user = await userLoginNext(formData);
           if (user) {
@@ -38,5 +41,5 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  secret: "abc",
+  secret: "abcdfasw34e45r4werdrf",
 };

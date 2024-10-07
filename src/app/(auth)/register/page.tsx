@@ -1,8 +1,44 @@
+"use client";
+import { doCredentialLogin } from "@/app/actions";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
 
 function RegisterPage() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setLoading(true);
+    const form = event.target as HTMLFormElement;
+    const email = form.email.value;
+    const password = form.password.value;
+    const name = form.username.value;
+
+    try {
+      const fromData = { email, password, name };
+      const token = await doCredentialLogin(fromData);
+      if (token?.ok) {
+        setLoading(false);
+        router.push("/user/dashboard");
+        console.log(token);
+      }
+    } catch (error) {
+      if (error) {
+        alert("something is wrong!!");
+        setLoading(false);
+      }
+    }
+  };
+
   return (
     <div className="bg-[url('https://mona-ai.mn/authbg.png')] min-h-[90vh] bg-cover bg-no-repeat bg-center flex justify-center items-center">
+      {loading && (
+        <div className="w-full absolute h-screen top-0 right-0 z-10 bg-gray-100/5 flex justify-center items-center text-3xl">
+          Loading...
+        </div>
+      )}
       <div className="flex w-[643px] flex-col gap-[32px] rounded-[20px] bg-[#101727] p-[32px]">
         <div className="flex flex-col gap-[16px]">
           <h1 className="font-lexend text-[32px] font-medium text-[#ffffff]">
@@ -11,7 +47,7 @@ function RegisterPage() {
           <p className="font-inter text-[16px] text-[#ffffff]/80">
             Sign up to start your 30-days free trial
           </p>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4 flex w-full flex-col gap-[18px]">
               <h1 className="font-inter text-[20px] text-[#ffffff]/80">Name</h1>
               <div className="relative">
@@ -25,7 +61,6 @@ function RegisterPage() {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
                     viewBox="0 0 448 512"
                     className="size-[24px] fill-[#ffffff]/30"
                     height="1em"
@@ -52,7 +87,6 @@ function RegisterPage() {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
                     viewBox="0 0 24 24"
                     className="size-[24px] fill-[#ffffff]/30"
                     height="1em"
@@ -81,7 +115,6 @@ function RegisterPage() {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
                     viewBox="0 0 512 512"
                     className="size-[24px] fill-[#ffffff]/30"
                     height="1em"
@@ -98,7 +131,6 @@ function RegisterPage() {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
                     viewBox="0 0 24 24"
                     className="size-6"
                     height="1em"

@@ -6,10 +6,13 @@ const userLogin = async (formData: { email: string; password: string }) => {
   const cookieStore = cookies();
 
   const { email, password } = formData;
-  const token = await axios.post("http://localhost:5000/api/v1/login", {
-    email,
-    password,
-  });
+  const token = await axios.post(
+    "https://somikoron-backend.vercel.app/api/v1/login",
+    {
+      email,
+      password,
+    }
+  );
 
   if (token.data) {
     cookieStore.set("userToken", token.data.accessToken);
